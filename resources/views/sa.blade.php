@@ -7,20 +7,43 @@
 <body>
 <div class="table-container">
     <div class="table-title">
-        <h2>SURVEY AUTHORITY (SA)</h2><br>
-        <button type="button" class="btn btn-success">ADD APPLICANT</button>
-        <div class="search-box">
+        <div class="title-left">
+        <h2>SURVEY AUTHORITY</h2>
+        <button class="addApplicant" onclick="openForm()">ADD APPLICANT</button>
+        </div>
+        <div class="search-filter">
+            <p class="p-filter">Filter: </p>
+            <div class="filter">
+            <!-- <select name="filter1" id="filter1">
+
+                <option selected disabled hidden style = "color: #a0a5b1;" >Cleared/Old</option>
+                <option value="Subsisting">Cleared</option>
+                <option value="Patented">Old</option>
+                <option value="">All</option>
+            </select> -->
+            <select name="filter" id="filter">
+
+                <option selected disabled hidden style = "color: #a0a5b1;" >Status</option>
+                <option value="On Process">On Process</option>
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+                <option value="All">All</option>
+            </select>
+            </div>
+            <div class="search-box">
             <i class="material-icons">&#xE8B6;</i>
             <input type="text" placeholder="Search&hellip;">
         </div>
+        </div>
+       
     </div>
-    <table>
+    <table class = "table" id ="tables">
         <thead>
             <tr>
                 <th>#</th>
                 <th>Applicant Name</th>
                 <th>Applicant Number</th>
-                <th>Patented/Subsisting</th>
+                <th>Status</th>
                 <th>Location</th>
                 <th>Survey No.</th>
                 <th>Remarks</th>
@@ -28,37 +51,53 @@
             </tr>
         </thead>
         <tbody>
-        @foreach($sadata as $ts)
+        @foreach($sadata as $sa)
             <tr>
-            <td>{{ $ts->id_tsa}}</td>
-            <td>{{ $ts->applicant_name }}</td>
-            <td>{{ $ts->applicant_number }}</td>
-            <td>{{ $ts->patented_subsisting }}</td>
-            <td>{{ $ts->location }}</td>
-            <td>{{ $ts->survey_no }}</td>
-            <td>{{ $ts->remarks }}</td>
+            <td>{{ $sa->id_sa}}</td>
+            <td>{{ $sa->applicant_name }}</td>
+            <td>{{ $sa->applicant_number }}</td>
+            <td>{{ $sa->on_process_rejected_approve}}</td>
+            <td>{{ $sa->location }}</td>
+            <td>{{ $sa->survey_no }}</td>
+            <td>{{ $sa->remarks }}</td>
             <td> 
                 <div class="actions">
                 <a href="#" class="edit"><i class="material-icons">&#xE254;</i></a>
-                <a href="#" class="delete"><i class="material-icons">&#xE872;</i></a>
+                <a href="{{ route('deletemsa') }}" class="delete-confirm" data-url="{{ route('deletemsa') }}">
+    <i class="material-icons">&#xe149;</i>
                 </div>
                     </td>
             </tr>
            @endforeach
         </tbody>
     </table>
-    <div class="clearfix">
-        <div class="hint-text">Showing <b>#</b> out of <b>#</b> entries</div>
-        <div class="pagination">
-            <a href="#"><i class="material-icons">&#xE5CB;</i></a>
-            <a href="#">1</a>
-            <a href="#" class="active">2</a>
-            <a href="#">3</a>
-            <a href="#"><i class="material-icons">&#xE5CC;</i></a>
-        </div>
-    </div>
-</div>
+   
+    <script>
 
+document.querySelector("#filter").addEventListener("change", filterTable);
+
+function filterTable(){
+    
+    const selectedOption = document.querySelector("#filter").value;
+    const tableRows = document.querySelectorAll("#tables tr");
+
+    tableRows.forEach((row, index)=> {
+        if (index === 0 ) return;
+
+        if(row.children[3].textContent.toLowerCase() === selectedOption.toLowerCase() || selectedOption === "All" ){
+
+            row.style.display = "";
+        }
+        else{
+
+            row.style.display = "none";
+
+        }
+    });
+
+}
+
+</script>
 
 
 @endsection

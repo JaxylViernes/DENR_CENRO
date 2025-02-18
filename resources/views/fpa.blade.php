@@ -8,19 +8,12 @@
 <div class="table-container">
     <div class="table-title">
         <div class="title-left">
-        <h2>RESIDENTIAL FREE PATENT APPLICATION</h2>
+        <h2>FREE PATENT APPLICATION (AGRICULTURAL)</h2>
         <button class="addApplicant" onclick="openForm()">ADD APPLICANT</button>
         </div>
         <div class="search-filter">
             <p class="p-filter">Filter: </p>
             <div class="filter">
-            <!-- <select name="filter1" id="filter1">
-
-                <option selected disabled hidden style = "color: #a0a5b1;" >Cleared/Old</option>
-                <option value="Subsisting">Cleared</option>
-                <option value="Patented">Old</option>
-                <option value="">All</option>
-            </select> -->
             <select name="filter" id="filter">
 
                 <option selected disabled hidden style = "color: #a0a5b1;" >Patented/Subsisting</option>
@@ -51,20 +44,20 @@
             </tr>
         </thead>
         <tbody>
-        @foreach($rfpadata as $rfpa)
+        @foreach($fpadata as $fpa)
             <tr>
-            <td>{{ $rfpa->id_rfpa}}</td>
-            <td>{{ $rfpa->applicant_name }}</td>
-            <td>{{ $rfpa->applicant_number }}</td>
-            <td>{{ $rfpa->reffered_investigator}}</td>
-            <td>{{ $rfpa->patented_subsisting }}</td>
-            <td>{{ $rfpa->location }}</td>
-            <td>{{ $rfpa->survey_no }}</td>
-            <td>{{ $rfpa->remarks }}</td>
+            <td>{{ $fpa->fpa_id}}</td>
+            <td>{{ $fpa->applicant_name }}</td>
+            <td>{{ $fpa->applicant_number }}</td>
+            <td>{{ $fpa->reffered_investigator}}</td>
+            <td>{{ $fpa->patented_subsisting }}</td>
+            <td>{{ $fpa->location }}</td>
+            <td>{{ $fpa->survey_no }}</td>
+            <td>{{ $fpa->remarks }}</td>
             <td> 
                 <div class="actions">
                 <a href="#" class="edit"><i class="material-icons">&#xE254;</i></a>
-                <a href="{{ route('deletemsa') }}" class="delete-confirm" data-url="{{ route('deletemsa') }}">
+                <a href="" class="delete-confirm" data-url="">
     <i class="material-icons">&#xe149;</i>
                 </div>
                     </td>
@@ -73,7 +66,7 @@
         </tbody>
     </table>
 
-    <script>
+<script>
 
 document.querySelector("#filter").addEventListener("change", filterTable);
 

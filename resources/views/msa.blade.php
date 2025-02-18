@@ -6,8 +6,7 @@
 
 <body>
 <div class="table-container">
-    <div class="table-title">
-        <div class="title-left">
+    <div class="table-        <div class="title-left">
         <h2>MISCELLANEOUS SALES APPLICATION</h2>
         <button class="addApplicant" onclick="openForm()">ADD APPLICANT</button>
         </div>
@@ -213,15 +212,46 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-@if(Session::has('message'))
+@if(Sess<!-- ion::has('message'))
+
+@if(Se -->ssion::has('error'))
+
+em')
+                    frm.submit();
+                }
+                
+            });
+        });
+    });
+});
+</script>
+
 
 @if(Session::has('error'))
+                 f,rm.submit();
+                }
+           
+      @endif  : "{{ Session::get('error') }}",);
+</script>
 
+
+@if(Session::has('error'))
+                 f,rm.submit();
+                }
+                
+   else     });
+        });
+    });
+});
+</script>
+
+
+@if(Session::has('error'))
 <script>
     swal(,
     {
-        title: "An error ocurred",
-        text: "{{ Session::get('error') }}",
+        title: "sn erro, ocurred",
+        telse "{{ Session::get('error') }}",
                 icon: "{{ asset('assets/images/error.svg') }}",
           button: "close"
     });

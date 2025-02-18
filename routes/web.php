@@ -23,6 +23,6 @@ Route::get('/fpa', [FpaController:: class, 'fpa'])->name('fpa');
 
 Route::post('/addmsa', [MsaController::class, 'addmsa'])->name('addmsa');
 
-Route::delete('/delete', [MsaController::class, 'delete'])->name('deletemsa');
+Route::delete('/delete/{id_msa}', [MsaController::class, 'delete'])->name('deletemsa');
 
 

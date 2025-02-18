@@ -55,7 +55,6 @@
     color: #FBFFE4;
     font-size: 13px;
     text-decoration: none;
-    border: none;
     
 }
 
@@ -263,7 +262,8 @@
 }
 
 /*form pop-up (sa add, edit)*/
-/* .open-button {
+.open-button {
+  background-color: #555;
   color: white;
   padding: 16px 20px;
   border: none;
@@ -273,7 +273,7 @@
   bottom: 23px;
   right: 28px;
   width: 280px;
-} */
+}
 
 
 .form-popup {
@@ -292,41 +292,21 @@
   
 
   .form-container {
-    /* margin-left: 30px; */
-    max-width: 100%;
+    
+    max-width: 500px;
     padding: 10px;
     background-color: #B3D8A8;
     border-radius: 10px;
   }
   
 
-  .form-container input[type=text]{
+  .form-container input[type=text], .form-container input[type=number], .form-container select {
     border-radius: 5px;
-    width: 90%;
+    width: 80%;
     padding: 15px;
     margin: 5px 0 22px 0;
     border: none;
     background: #f1f1f1;
-  }
-
- select {
-    border-radius: 5px;
-    width: 95%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    border: none;
-    background: #f1f1f1;
- }  
-  .form-container textarea{
-    border-radius: 5px;
-    width: 95%;
-    padding: 15px;
-    border: none;
-    background: #f1f1f1;
-  }
-
-  .form-container input[type=textarea]{
-    height: 200px;
   }
   
  
@@ -356,53 +336,6 @@
     opacity: 1;
   }
 
-  /*hati ng form pop-up*/
-  .column {
-    float: left;
-    width: 50%;
-  }
-  
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-
-  hr{
-    background-color: #3D8D7A;
-    border: none;
-    height: 2px;
-  }
-
-  /*close button*/ 
-  .close-button {
-    font-size: 20px; 
-    background: none; 
-    border: none; 
-    cursor: pointer; 
-    margin-right: 20px;
-}
-
-.close-button i {
-    font-size: 24px; 
-    color: #3D8D7A; 
-}
 
 
-.titleCloseButton{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    width: 100%; 
-}
 
-.swal-icon {
-    width: 400px;   
-    height: 250px;  
-  }
-
-  .delete-confirm{
-    border: none;
-    color: red;
-  }

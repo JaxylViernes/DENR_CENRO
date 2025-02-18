@@ -12,7 +12,7 @@ class msa extends Model
     protected $table = 'msa';
     
     protected $fillable = [
-        'id_msa',
+        // 'id_msa',
         'applicant_name',
         'applicant_number',
         'patented_subsisting',

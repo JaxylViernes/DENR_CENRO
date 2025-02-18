@@ -57,17 +57,24 @@
 </div>
 @if(Session::has('message'))
 <script>
-    swal("Error logging in", "{{ Session::get('message') }}", "error",
-    {
-    
-    });
+    swal({
+
+                title: "Error logging in",
+                text: "{{ Session::get('message') }}",
+                icon: "{{ asset('assets/images/wrongCredentials.svg') }}",
+          button: "Try again"
+       
+});
 </script>
 
 @elseif(Session::has('success'))
 <script>
-    swal("Successfully logged in", "{{ Session::get('success') }}", "success",
+    swal(
     {
     
+      title: "Successfully logged in",
+                icon: "{{ asset('assets/images/success.svg') }}",
+          button: "Proceed"
     }).then(function() {
 window.location = "{{ route('login') }}";
 });

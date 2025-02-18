@@ -33,7 +33,23 @@ class MsaController extends Controller
         return back()->with('success', 'Applicant added successfully');
     }
 
-    public function delete($id, $type){
+    public function delete($id_msa){
+        // $msa = msa::where($id_msa, 'id_msa')->first();
+
+        // if ($msa) {
+        //     $msa->delete();
+        //     return back()->with('success', 'Record deleted successfully.');
+        // }
+    
+        // return back()->with('error', 'Record not found.');
         
+        $deleted = DB::table('msa')->where('id_msa', $id_msa)->delete();
+   
+   if($deleted){
+    return back()->with('success', 'Record successfully deleted.');
+   }
+   else{
+    return back()->with('error', 'Record not found.');
+   }
     }
 }

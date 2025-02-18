@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fpa extends Model
 {
-    protected $table = '';
+    protected $table = 'fpa';
     
     protected $fillable = [
-        'id_rfpa',
+        'fpa_ID',
         'applicant_name',
         'applicant_number',
         'referred_investigator',

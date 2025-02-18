@@ -14,6 +14,7 @@ class Tsa extends Model
         'patented_subsisting',
         'location',
         'survey_no',
+        'cleared_old',
         'remarks',        
     ];
 }

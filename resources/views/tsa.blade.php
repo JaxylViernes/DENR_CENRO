@@ -7,13 +7,35 @@
 <body>
 <div class="table-container">
     <div class="table-title">
-        <h2>TOWNSITE SALES APPLICATION (TSA)</h2>
-        <div class="search-box">
+        <div class="title-left">
+        <h2>TOWNSITE SALES APPLICATION</h2>
+        <button class="addApplicant" onclick="openForm()">ADD APPLICANT</button>
+        </div>
+        <div class="search-filter">
+            <p class="p-filter">Filter: </p>
+            <div class="filter">
+            <select name="filter1" id="filter1">
+
+                <option selected disabled hidden style = "color: #a0a5b1;" value = "none1" >Cleared/Old</option>
+                <option value="Cleared">Cleared</option>
+                <option value="Old">Old</option>
+                <option value="All">All</option>
+            </select>
+            <select name="filter" id="filter">
+                <option selected disabled hidden style = "color: #a0a5b1;" value = "none" >Patented/Subsisting</option>
+                <option value="Subsisting">Subsisting</option>
+                <option value="Patented">Patented</option>
+                <option value="All">All</option>
+            </select>
+            </div>
+            <div class="search-box">
             <i class="material-icons">&#xE8B6;</i>
             <input type="text" placeholder="Search&hellip;">
         </div>
+        </div>
+       
     </div>
-    <table>
+    <table class = "table" id = "tables">
         <thead>
             <tr>
                 <th>#</th>
@@ -22,6 +44,7 @@
                 <th>Patented/Subsisting</th>
                 <th>Location</th>
                 <th>Survey No.</th>
+                <th>Cleared/Old</th>
                 <th>Remarks</th>
                 <th>Actions</th>
             </tr>
@@ -35,29 +58,76 @@
             <td>{{ $ts->patented_subsisting }}</td>
             <td>{{ $ts->location }}</td>
             <td>{{ $ts->survey_no }}</td>
+            <td>{{ $ts->cleared_old }}</td>
             <td>{{ $ts->remarks }}</td>
             <td> 
                 <div class="actions">
                 <a href="#" class="edit"><i class="material-icons">&#xE254;</i></a>
-                <a href="#" class="delete"><i class="material-icons">&#xE872;</i></a>
+                <a href="" class="delete-confirm" data-url="">
+    <i class="material-icons">&#xe149;</i>
                 </div>
                     </td>
             </tr>
            @endforeach
         </tbody>
     </table>
-    <div class="clearfix">
-        <div class="hint-text">Showing <b>#</b> out of <b>#</b> entries</div>
-        <div class="pagination">
-            <a href="#"><i class="material-icons">&#xE5CB;</i></a>
-            <a href="#">1</a>
-            <a href="#" class="active">2</a>
-            <a href="#">3</a>
-            <a href="#"><i class="material-icons">&#xE5CC;</i></a>
-        </div>
-    </div>
-</div>
+  
+    <script>
 
+document.querySelector("#filter").addEventListener("change", filterTable);
+document.querySelector("#filter1").addEventListener("change", filterTable);
+
+function filterTable() {
+    const selectedOption1 = document.querySelector("#filter1").value; 
+    const selectedOption = document.querySelector("#filter").value; 
+    const tableRows = document.querySelectorAll("#tables tr");
+
+    tableRows.forEach((row, index) => {
+        if (index === 0) return; 
+
+        const patentedSubsisting = row.children[3].textContent.toLowerCase(); 
+        const clearedOld = row.children[6].textContent.toLowerCase(); 
+
+        
+        const matchesPatentedSubsisting = (selectedOption === "All" || patentedSubsisting === selectedOption.toLowerCase());
+        const matchesClearedOld = (selectedOption1 === "All" || clearedOld === selectedOption1.toLowerCase());
+
+        
+        if (selectedOption1 === "All" && selectedOption === "All") {
+            row.style.display = ""; 
+        }
+        // else if (selectedOption1 === "Cleared" && selectedOption === "none") {
+        //     row.style.display = ""; 
+        // }
+        // else if (selectedOption1 === "Old" && selectedOption === "none") {
+        //     row.style.display = ""; 
+        // }
+        else if (selectedOption1 === "Cleared" && selectedOption == "All"){
+            row.style.display = "";
+        }
+        else if (selectedOption1 === "Cleared" && selectedOption === "Subsisting" && clearedOld === "cleared" && patentedSubsisting === "subsisting") {
+            row.style.display = ""; 
+        } 
+        else if (selectedOption1 === "Cleared" && selectedOption === "Patented" && clearedOld === "cleared" && patentedSubsisting === "patented") {
+            row.style.display = "";
+        } 
+        else if (selectedOption1 === "Old" && selectedOption === "Subsisting" && clearedOld === "old" && patentedSubsisting === "subsisting") {
+            row.style.display = ""; 
+        } 
+        else if (selectedOption1 === "Old" && selectedOption === "Patented" && clearedOld === "old" && patentedSubsisting === "patented") {
+            row.style.display = "";
+        } 
+        else if (matchesPatentedSubsisting && matchesClearedOld) {
+            row.style.display = ""; 
+        } 
+        else {
+            row.style.display = "none"; 
+        }
+    });
+}
+
+
+</script>
 
 
 @endsection

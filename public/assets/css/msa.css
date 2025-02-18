@@ -27,7 +27,7 @@ body {
     
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: end;
     padding-bottom: 10px;
     border-bottom: 2px solid #ddd;
     margin-bottom: 10px;
@@ -35,7 +35,61 @@ body {
 
 .table-title h2 {
     margin-top: 0;
-    font-size: 20px;
+    font-size: 24px;
+}
+
+.title-left h2{
+    display: flex;
+    flex-direction: row;
+    margin-right: 20px;
+    margin-bottom: 6px;
+}
+
+.title-left button{
+    padding: 8px 10px 8px 10px;
+    font-size: 14px;
+    background-color: #3D8D7A;
+    border: 1px solid;
+    /* border-color: white; */
+    border-radius: 5px;
+    color: #FBFFE4;
+    cursor: pointer;
+}
+
+.title-left button:hover{
+    background-color:rgb(51, 120, 104)
+}
+
+.filter select {
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    padding: 8px 10px 8px 10px;
+    border-radius: 1px;
+    font-size: 14px;
+    font-weight: 500;
+    /* color: #a0a5b1; */
+    outline: none;
+    
+}
+
+.table-title .search-filter{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.p-filter {
+    display: flex;
+    margin-right: 7px;
+    align-items: center;
+    font-size: 16px;
+    
+}
+
+.filter select option {
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
 }
 
 .search-box {
@@ -101,33 +155,5 @@ table tbody tr:hover {
 
 .view { color: #03A9F4; }
 .edit { color: #FFC107; }
-.delete { color: #E34724; }
+.delete-confirm { color: #E34724; }
 
-.pagination {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
-}
-
-.pagination a {
-    text-decoration: none;
-    padding: 5px 10px;
-    margin: 0 3px;
-    /* border-radius: 50%; */
-    color: #999;
-    /* border: 1px solid transparent; */
-}
-
-.pagination a:hover {
-    color: blue;
-}
-
-.pagination .active {
-    /* background: #03A9F4; */
-    color: blue;
-}
-
-.hint-text {
-    font-size: 14px;
-    margin-top: 6px;
-}

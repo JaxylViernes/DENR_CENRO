@@ -7,15 +7,34 @@
 <body>
 <div class="table-container">
     <div class="table-title">
-        <h2>MISCELLANEOUS APPLICATION (MSA)</h2>
-        
-        <div class="search-box">
+        <div class="title-left">
+        <h2>MISCELLANEOUS SALES APPLICATION</h2>
+        <button class="addApplicant" onclick="openForm()">ADD APPLICANT</button>
+        </div>
+        <div class="search-filter">
+            <p class="p-filter">Filter: </p>
+            <div class="filter">
+            <select name="filter" id="filter">
+                <option selected disabled hidden style = "color: #a0a5b1;" >Patented/Subsisting</option>
+                <option value="Subsisting">Subsisting</option>
+                <option value="Patented">Patented</option>
+                <option value="All">All</option>
+            </select>
+            </div>
+            <div class="search-box">
             <i class="material-icons">&#xE8B6;</i>
             <input type="text" placeholder="Search&hellip;">
         </div>
+        </div>
+       
     </div>
+
+   
+    <table class = "table" id = "tables">
+
     <button class="addApplicant" onclick="openForm()">ADD APPLICATION</button>
     <table>
+
         <thead>
             <tr>
                 <th>#</th>
@@ -41,6 +60,11 @@
             <td> 
                 <div class="actions">
                 <a href="#" class="edit"><i class="material-icons">&#xE254;</i></a>
+
+                <a href="{{ route('deletemsa') }}" class="delete-confirm" data-url="{{ route('deletemsa') }}">
+    <i class="material-icons">&#xe149;</i>
+</a>
+
                 <!-- <a href="{{ route('deletemsa', $ms->id_msa) }}" class="delete-confirm" data-url="{{ route('deletemsa',$ms->id_msa) }}">
     <i class="material-icons">&#xE872;</i> 
 </a> -->
@@ -52,6 +76,7 @@
                 </button>
             </form>
 
+
                 <!-- <button class="delete" onclick="deleteConfirmation()"><i class="material-icons">&#xE872;</i></button> -->
                 </div>
                     </td>
@@ -59,17 +84,9 @@
            @endforeach
         </tbody>
     </table>
-    <div class="clearfix">
-        <div class="hint-text">Showing <b>#</b> out of <b>#</b> entries</div>
-        <div class="pagination">
-            <a href="#"><i class="material-icons">&#xE5CB;</i></a>
-            <a href="#">1</a>
-            <a href="#" class="active">2</a>
-            <a href="#">3</a>
-            <a href="#"><i class="material-icons">&#xE5CC;</i></a>
-        </div>
-    </div>
-</div>
+
+
+   
 
 
 <div class="form-popup" id="myForm">
@@ -121,6 +138,36 @@
     
   </form>
 </div>
+
+
+<script>
+
+    document.querySelector("#filter").addEventListener("change", filterTable);
+
+    function filterTable(){
+        
+        const selectedOption = document.querySelector("#filter").value;
+        const tableRows = document.querySelectorAll("#tables tr");
+
+        tableRows.forEach((row, index)=> {
+            if (index === 0 ) return;
+
+            if(row.children[3].textContent.toLowerCase() === selectedOption.toLowerCase() || selectedOption === "All" ){
+
+                row.style.display = "";
+            }
+            else{
+
+                row.style.display = "none";
+
+            }
+        });
+
+    }
+
+</script>
+
+
 <script>
 function openForm() {
   document.getElementById("myForm").style.display = "block";
@@ -163,7 +210,13 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 
+
+
+
+@if(Session::has('message'))
+
 @if(Session::has('error'))
+
 <script>
     swal(,
     {

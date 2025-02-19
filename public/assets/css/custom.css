@@ -1,25 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Montserrat';
+    font-family: "Montserrat";
 }
 
-.main{
+.main {
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.header img{
+.header img {
     height: 50px;
     width: auto;
-    
 }
 
-.logo-title{
+.logo-title {
     height: 50px;
     width: auto;
     padding: 0 60px 0 10px;
@@ -35,43 +34,45 @@
     color: whitesmoke;
 }
 
-.header{
-
-    color: #FBFFE4;
+.header {
+    color: #fbffe4;
     height: 60px;
     display: flex;
     width: auto;
     align-items: center;
     justify-content: space-between;
     padding: 7px 50px 7px 50px;
-    background-color: #3D8D7A;
-    
+    background-color: #3d8d7a;
 }
 
-.addApplicant{
-    background-color: #3D8D7A;
+.addApplicant {
+    background-color: #3d8d7a;
     padding: 10px;
     border-radius: 5px;
-    color: #FBFFE4;
+    color: #fbffe4;
     font-size: 13px;
     text-decoration: none;
+<<<<<<< Updated upstream
     
+=======
+    border: none;
+>>>>>>> Stashed changes
 }
 
-.nav{
+.nav {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.nav ul{
+.nav ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    list-style: none; 
+    list-style: none;
 }
 
-.nav ul a{
+.nav ul a {
     font-weight: 500;
     margin-right: 60px;
     font-size: 16px;
@@ -81,15 +82,15 @@
     cursor: pointer;
 }
 
-.nav ul a:hover{
-    color: #B3D8A8;
+.nav ul a:hover {
+    color: #b3d8a8;
 }
 
-.nav-2 i{
+.nav-2 i {
     font-size: 18px;
 }
 
-.nav-2 a{
+.nav-2 a {
     font-weight: 500;
     font-size: 16px;
     text-transform: uppercase;
@@ -98,8 +99,8 @@
     cursor: pointer;
 }
 
-.nav-2 a:hover{
-    color: #B3D8A8;
+.nav-2 a:hover {
+    color: #b3d8a8;
 }
 
 .sp {
@@ -110,30 +111,28 @@
     margin-top: 14px;
 }
 
-.sp p{
+.sp p {
     font-size: 10px;
-    
+
     margin-right: 60px;
 }
 
-.container{
-    
+.container {
     display: flex;
     flex-direction: row;
-    background-color: #FBFFE4;
+    background-color: #fbffe4;
     height: 100%;
-    color: #3D8D7A;
+    color: #3d8d7a;
 }
 
-.content1{
+.content1 {
     width: auto;
     padding-left: 50px;
     width: 50%;
     display: flex;
-    
 }
 
-.content2{
+.content2 {
     width: 50%;
     display: flex;
     height: 100%;
@@ -141,7 +140,7 @@
     align-items: center;
 }
 
-.content3 img{
+.content3 img {
     width: 50px;
     display: flex;
     height: 50px;
@@ -149,22 +148,22 @@
     align-items: center;
 }
 
-.content1 h1{
+.content1 h1 {
     font-size: 36px;
     margin-top: 120px;
 }
 
-.content1-1 h4{
+.content1-1 h4 {
     margin-top: 35px;
     font-size: 24px;
 }
 
-.content1-1 .p1{
+.content1-1 .p1 {
     margin-top: 5px;
     font-size: 20px;
 }
 
-.content1-1 .p2{
+.content1-1 .p2 {
     margin-top: 10px;
     font-size: 16px;
 }
@@ -176,88 +175,82 @@
     height: 580px;
 }
 
-.dropdown-tsa{
+.dropdown-tsa {
     margin-right: 60px;
     float: left;
     overflow: hidden;
 }
 
-.dropdown-tsa i{
+.dropdown-tsa i {
     font-size: 16px;
     font-weight: bold;
     margin: 0;
-    
 }
 
-.tsa-content{
+.tsa-content {
     display: none;
     position: absolute;
-    background-color: #3D8D7A;
+    background-color: #3d8d7a;
     width: 110px;
     /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
     z-index: 1;
     /* margin-top: 25px;  */
     padding-top: 15px;
-   
 }
 
-.tsa-content a{
-    color: #3D8D7A;
+.tsa-content a {
+    color: #3d8d7a;
     float: none;
     padding: 10px 8px;
     text-decoration: none;
     display: block;
     text-align: left;
-    
 }
 
-.tsa-content a:hover{
+.tsa-content a:hover {
     color: black;
 }
 
-.dropdown-tsa:hover .tsa-content{
+.dropdown-tsa:hover .tsa-content {
     display: block;
 }
 
-.sp .dropdown-sp{
+.sp .dropdown-sp {
     float: left;
     overflow: hidden;
 }
 
-.dropdown-sp i{
+.dropdown-sp i {
     font-size: 16px;
     font-weight: bold;
     margin-left: 4px;
-    
 }
 
-.sp-content{
+.sp-content {
     display: none;
     position: absolute;
-    background-color: #3D8D7A;
+    background-color: #3d8d7a;
     width: 150px;
     /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
     z-index: 1;
     /* margin-top: 25px;  */
     padding-top: 1px;
-   
 }
 
-.sp-content a{
-    color: #3D8D7A;
+.sp-content a {
+    color: #3d8d7a;
     float: none;
     padding: 10px 8px;
     text-decoration: none;
     display: block;
     text-align: left;
-    
 }
 
-.sp-content a:hover{
+.sp-content a:hover {
     color: black;
 }
 
-.dropdown-sp:hover .sp-content{
+.dropdown-sp:hover .sp-content {
     display: block;
 }
 
@@ -274,31 +267,33 @@
   right: 28px;
   width: 280px;
 }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 .form-popup {
-    color:  #3D8D7A;
+    color: #3d8d7a;
     display: none;
     top: 0;
     position: fixed;
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     /* right: 15px; */
-  
+    /* box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); */
     z-index: 9;
-  }
-  
+    border-radius: 10px;
+}
 
   .form-container {
     
     max-width: 500px;
     padding: 10px;
-    background-color: #B3D8A8;
+    background-color: #b3d8a8;
     border-radius: 10px;
-  }
-  
+}
 
   .form-container input[type=text], .form-container input[type=number], .form-container select {
     border-radius: 5px;
@@ -313,29 +308,36 @@
   .form-container input[type=text]:focus, .form-container input[type=password]:focus {
     background-color: #ddd;
     outline: none;
-  }
-  
-  .form-container .btn {
-    background-color: #04AA6D;
+}
+
+.form-container .btn {
+    background-color: #04aa6d;
     color: white;
     padding: 16px 20px;
     border: none;
     cursor: pointer;
     width: 100%;
-    margin-bottom:10px;
+    margin-bottom: 10px;
     opacity: 0.8;
-  }
-  
+}
 
-  .form-container .cancel {
+.form-container .cancel {
     background-color: red;
-  }
-  
+}
 
-  .form-container .btn:hover, .open-button:hover {
+.form-container .btn:hover,
+.open-button:hover {
     opacity: 1;
+<<<<<<< Updated upstream
   }
 
 
 
 
+=======
+}
+
+
+
+
+>>>>>>> Stashed changes

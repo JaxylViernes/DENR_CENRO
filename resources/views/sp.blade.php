@@ -7,8 +7,7 @@
 <body>
 <div class="table-container">
     <div class="table-title">
-<<<<<<< HEAD
-        <h2>FREE PATENT APPLICATION (FPA)</h2>
+        <h2>SPECIAL PATENT (GOVERNMENT) </h2>
 
         <div class="search-box">
             <i class="material-icons">&#xE8B6;</i>
@@ -16,32 +15,7 @@
         </div>
 
     </div>
-    <table id = "fpaTable">
-=======
-        <div class="title-left">
-        <h2>FREE PATENT APPLICATION (AGRICULTURAL)</h2>
-        <button class="addApplicant" onclick="openForm()">ADD APPLICANT</button>
-        </div>
-        <div class="search-filter">
-            <p class="p-filter">Filter: </p>
-            <div class="filter">
-            <select name="filter" id="filter">
-
-                <option selected disabled hidden style = "color: #a0a5b1;" >Patented/Subsisting</option>
-                <option value="Subsisting">Subsisting</option>
-                <option value="Patented">Patented</option>
-                <option value="All">All</option>
-            </select>
-            </div>
-            <div class="search-box">
-            <i class="material-icons">&#xE8B6;</i>
-            <input type="text" placeholder="Search&hellip;">
-        </div>
-        </div>
-       
-    </div>
-    <table class = "table" id ="tables">
->>>>>>> 7ce7c29d426a7ac63529c781ad49d3c610c6fdfc
+    <table id = "spTable">
         <thead>
             <tr>
                 <th>#</th>
@@ -56,39 +30,26 @@
             </tr>
         </thead>
         <tbody>
-        @foreach($fpadata as $fpa)
+        @foreach($spdata as $sp)
             <tr>
-<<<<<<< HEAD
-            <td>{{ $fpa->id_fpa}}</td>
-            <td>{{ $fpa->applicant_name }}</td>
-            <td>{{ $fpa->applicant_number }}</td>
-            <td>{{ $fpa->referred_investigator}}</td>
-=======
-            <td>{{ $fpa->fpa_id}}</td>
-            <td>{{ $fpa->applicant_name }}</td>
-            <td>{{ $fpa->applicant_number }}</td>
-            <td>{{ $fpa->reffered_investigator}}</td>
->>>>>>> 7ce7c29d426a7ac63529c781ad49d3c610c6fdfc
-            <td>{{ $fpa->patented_subsisting }}</td>
-            <td>{{ $fpa->location }}</td>
-            <td>{{ $fpa->survey_no }}</td>
-            <td>{{ $fpa->remarks }}</td>
+            <td>{{ $sp->id_sp}}</td>
+            <td>{{ $sp->applicant_name }}</td>
+            <td>{{ $sp->applicant_number }}</td>
+            <td>{{ $sp->referred_investigator}}</td>
+            <td>{{ $sp->patented_subsisting }}</td>
+            <td>{{ $sp->location }}</td>
+            <td>{{ $sp->survey_no }}</td>
+            <td>{{ $sp->remarks }}</td>
             <td> 
                 <div class="actions">
                 <a href="#" class="edit"><i class="material-icons">&#xE254;</i></a>
-<<<<<<< HEAD
                 <a href="#" class="delete"><i class="material-icons">&#xE872;</i></a>
-=======
-                <a href="" class="delete-confirm" data-url="">
-    <i class="material-icons">&#xe149;</i>
->>>>>>> 7ce7c29d426a7ac63529c781ad49d3c610c6fdfc
                 </div>
                     </td>
             </tr>
            @endforeach
         </tbody>
     </table>
-<<<<<<< HEAD
     <div class="clearfix">
         <div class="hint-text">Showing <b>#</b> out of <b>#</b> entries</div>
         <div class="pagination">
@@ -104,7 +65,7 @@
             document.addEventListener("DOMContentLoaded", function() {
                 document.getElementById("searchInput").addEventListener("input", function() { 
                     const searchValue = this.value.toLowerCase();
-                    const rows = document.querySelectorAll("#fpaTable tbody tr");
+                    const rows = document.querySelectorAll("#spTable tbody tr");
                     
                     rows.forEach(row => {
                         const cells = row.querySelectorAll("td");
@@ -127,35 +88,6 @@
                 @endif
             });
         </script>
-=======
-
-<script>
-
-document.querySelector("#filter").addEventListener("change", filterTable);
-
-function filterTable(){
-    
-    const selectedOption = document.querySelector("#filter").value;
-    const tableRows = document.querySelectorAll("#tables tr");
-
-    tableRows.forEach((row, index)=> {
-        if (index === 0 ) return;
-
-        if(row.children[4].textContent.toLowerCase() === selectedOption.toLowerCase() || selectedOption === "All" ){
-
-            row.style.display = "";
-        }
-        else{
-
-            row.style.display = "none";
-
-        }
-    });
-
-}
-
-</script>
->>>>>>> 7ce7c29d426a7ac63529c781ad49d3c610c6fdfc
 
 
 @endsection

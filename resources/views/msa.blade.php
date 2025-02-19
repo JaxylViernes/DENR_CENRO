@@ -2,11 +2,11 @@
 @section('content')
 
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <body>
 <div class="table-container">
-    <div class="table-        <div class="title-left">
+     <div class="title-left">
         <h2>MISCELLANEOUS SALES APPLICATION</h2>
         <button class="addApplicant" onclick="openForm()">ADD APPLICANT</button>
         </div>
@@ -53,6 +53,11 @@
             <td> 
                 <div class="actions">
                 <a href="#" class="edit"><i class="material-icons">&#xE254;</i></a>
+
+                <a href="{{ route('deletemsa') }}" class="delete-confirm" data-url="{{ route('deletemsa') }}">
+    <i class="material-icons">&#xe149;</i>
+</a>
+
                 <!-- <a href="{{ route('deletemsa', $ms->id_msa) }}" class="delete-confirm" data-url="{{ route('deletemsa',$ms->id_msa) }}">
     <i class="material-icons">&#xE872;</i> 
 </a> -->
@@ -63,6 +68,7 @@
                     <i class="material-icons">&#xE872;</i>
                 </button>
             </form>
+
 
                 <!-- <button class="delete" onclick="deleteConfirmation()"><i class="material-icons">&#xE872;</i></button> -->
                 </div>
@@ -79,68 +85,110 @@
 <div class="form-popup" id="myForm">
   <form action="{{ route('addmsa') }}" class="form-container" method="POST">
     @csrf
-    <h1>ADD APPLICANT</h1>
-
+    <div class = "titleCloseButton">
+    <h1 style="margin-bottom: 10px;">ADD APPLICATION</h1><button type="button" class = "close-button" onclick="closeForm()"><i class="material-icons">close</i></button>
+    </div>
+    <hr>
+<div class = "row" style="margin-top: 10px;">
+    <div class = "column">
     <label for="applicantname">Applicant Name</label>
-    <input type="text" placeholder="Full name" name="applicantname" required><br>
+    <input type="text" placeholder="Enter Applicant name (Surname first)" name="applicantname" required><br>
 
+    <label for="location">Location</label>
+    <input type="text" placeholder='Enter location' name="location" required><br>
+
+   </div>
+    <div class = "column">
+
+  
     <label for="applicantnumber">Applicant Number</label>
-    <input type="number" placeholder="Applicant Number" name="applicantnumber" required><br>
-
-    <label for="status">Status (Subsisting/Patented)</label>
-    <select name="status">
-    <option>Select</option>
-    <option value="subsisting">Subsisting</option>
-    <option value="patented">Patented</option>
-    </select><br>
-
-    <label for="location">Applicant Number</label>
-    <input type="text" placeholder="Location" name="location" required><br>
-
+    <input type="text" placeholder="Enter Applicant number" name="applicantnumber" required><br>
+    <div class = "row">
+    <div class = "column">
     <label for="surveynumber">Survey Number</label>
-    <input type="text" placeholder="Survey Number" name="surveynumber" required><br>
-
-    <label for="remarks">Remarks</label>
-    <input type="text" placeholder="Remarks" name="remarks" required><br>
-
-    <input type="submit" class="btn">
-    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    <input type="text" placeholder="Enter Survey number" name="surveynumber" required><br>
+    </div>
+    <div class = "column">
+        <div style = "margin-left: 20px;">
+    <label for="status" >Status</label><br>
+ 
+ <select name="status">
+ <option>Select</option>
+ <option value="subsisting">Subsisting</option>
+ <option value="patented">Patented</option>
+ </select>
+ </div><br>
+    
+ </div>
+ </div>
+    </div>
+    </div>
+    <label for="remarks">Remarks</label><br>
+    <!-- <input type="textarea" placeholder="Remarks" name="remarks" required><br>
+      -->
+      <textarea id="comments" name="remarks" rows="4" cols="50" placeholder="Remarks"></textarea><br><br>
+    <input type="submit" class="btn" style="border-radius: 10px;">
+    
   </form>
 </div>
 
+        <!--*edit*-->
+        <div class="form-popupEdit" id="myFormEdit">
+            <form action="" class="form-containerEdit" id="editForm" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="titleCloseButton">
+                    <h1 style="margin-bottom: 10px;">EDIT APPLICATION</h1><button type="button" class="close-button"
+                        onclick="closeFormEdit()"><i class="material-icons">close</i></button>
+                </div>
+                <hr>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="column">
+                        <label for="applicantname">Applicant Name</label>
+                        <input type="text" placeholder="Enter Applicant name (Surname first)" name="applicantname"
+                            required><br>
 
-<script>
+                        <label for="location">Location</label>
+                        <input type="text" placeholder='Enter location' name="location" required><br>
 
-    document.querySelector("#filter").addEventListener("change", filterTable);
+                    </div>
+                    <div class="column">
 
-    function filterTable(){
-        
-        const selectedOption = document.querySelector("#filter").value;
-        const tableRows = document.querySelectorAll("#tables tr");
 
-        tableRows.forEach((row, index)=> {
-            if (index === 0 ) return;
+                        <label for="applicantnumber">Applicant Number</label>
+                        <input type="text" placeholder="Enter Applicant number" name="applicantnumber" required><br>
+                        <div class="row">
+                            <div class="column">
+                                <label for="surveynumber">Survey Number</label>
+                                <input type="text" placeholder="Enter Survey number" name="surveynumber" required><br>
+                            </div>
+                            <div class="column">
+                                <div style="margin-left: 20px;">
+                                    <label for="status">Status</label><br>
 
-            if(row.children[3].textContent.toLowerCase() === selectedOption.toLowerCase() || selectedOption === "All" ){
+                                    <select name="status">
+                                        <option>Select</option>
+                                        <option value="subsisting">Subsisting</option>
+                                        <option value="patented">Patented</option>
+                                    </select>
+                                </div><br>
 
-                row.style.display = "";
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <label for="remarks">Remarks</label><br>
+                <textarea id="comments" name="remarks" rows="4" cols="50" placeholder="Remarks"></textarea><br><br>
+                <input type="submit" class="btn" style="border-radius: 10px;" value="UPDATE APPLICATION">
+
+            </form>
+        </div>
+
+
+        <script>
+            function openForm() {
+                document.getElementById("myForm").style.display = "block";
             }
-            else{
-
-                row.style.display = "none";
-
-            }
-        });
-
-    }
-
-</script>
-
-
-<script>
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
 
 function deleteConfirmation(){
     swal({
@@ -163,43 +211,67 @@ function(isConfirm){
 });
 }
 
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
-</script>
+            function closeForm() {
+                document.getElementById("myForm").style.display = "none";
+            }
+
+            function openFormEdit(button) {
+                document.getElementById("myFormEdit").style.display = "block";
+                document.getElementById("editForm").action = "{{ route('updatemsa', '') }}/" + button.getAttribute("data-id");
+
+                console.log("Data Attributes:");
+                console.log("Applicant Name:", button.getAttribute("data-applicant_name"));
+                console.log("Applicant Number:", button.getAttribute("data-applicant_number"));
+                console.log("Location:", button.getAttribute("data-location"));
+                console.log("Survey No:", button.getAttribute("data-survey_no"));
+                console.log("Remarks:", button.getAttribute("data-remarks"));
+                console.log("Status:", button.getAttribute("data-patented_subsisting"));
+
+                document.querySelector("#myFormEdit input[name='applicantname']").value = button.getAttribute("data-applicant_name");
+                document.querySelector("#myFormEdit input[name='applicantnumber']").value = button.getAttribute("data-applicant_number");
+                document.querySelector("#myFormEdit input[name='location']").value = button.getAttribute("data-location");
+                document.querySelector("#myFormEdit input[name='surveynumber']").value = button.getAttribute("data-survey_no");
+                document.querySelector("#myFormEdit textarea[name='remarks']").value = button.getAttribute("data-remarks");
+
+                let statusDropdown = document.querySelector("#myFormEdit select[name='status']");
+                let statusValue = button.getAttribute("data-patented_subsisting");
+
+                for (let option of statusDropdown.options) {
+                    if (option.value.toLowerCase() === statusValue.toLowerCase()) {
+                        option.selected = true;
+                        break;
+                    }
+                }
+            }
+
+
+            function closeFormEdit() {
+                document.getElementById("myFormEdit").style.display = "none";
+            }
+        </script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".delete-confirm").forEach(button => {
         button.addEventListener("click", function (e) {
             e.preventDefault();
-            let deleteUrl = this.getAttribute("data-url");
+            
+            let form = this.closest('form');  
 
             swal({
                 title: "Are you sure?",
-                text: "Record will be moved to archves",
-                icon: "warning",
-               buttons: true
+                text: "Record will be moved to archives",
+                icon: "{{ asset('assets/images/deleteConfirmation.svg') }}",  // Custom image for the icon
+                buttons: {
+                    cancel: "No, Cancel",
+                    confirm: "Yes, Proceed"
+                },
+                dangerMode: true,
             }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = deleteUrl;
-                }
-            });
-        });
-    });
-});
-</script>
-
-
-
-
-
-@if(Sess<!-- ion::has('message'))
-
-@if(Se -->ssion::has('error'))
-
-em')
-                    frm.submit();
+                if(result){
+                console.log('deleting item');
+                    console.log('deleting item')
+                    form.submit();
                 }
                 
             });
@@ -210,30 +282,11 @@ em')
 
 
 @if(Session::has('error'))
-                 f,rm.submit();
-                }
-           
-      @endif  : "{{ Session::get('error') }}",);
-</script>
-
-
-@if(Session::has('error'))
-                 f,rm.submit();
-                }
-                
-   else     });
-        });
-    });
-});
-</script>
-
-
-@if(Session::has('message'))
 <script>
-    swal("Error logging in", "{{ Session::get('message') }}", "error",
+    swal(,
     {
-        title: "An error ocurred",
-        text: "{{ Session::get('error') }}",
+        title: "sn erro, ocurred",
+        telse "{{ Session::get('error') }}",
                 icon: "{{ asset('assets/images/error.svg') }}",
           button: "close"
     });
@@ -241,9 +294,13 @@ em')
 
 @elseif(Session::has('success'))
 <script>
-    swal("Application Added", "{{ Session::get('success') }}", "success",
+    swal(
     {
     
+        title: "Success",
+        text: "{{ Session::get('success') }}",
+                icon: "{{ asset('assets/images/success.svg') }}",
+          button: "Proceed"
     });
 </script>
             @endif

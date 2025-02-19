@@ -14,5 +14,4 @@ class FpaController extends Controller
         
         return view('fpa', compact('fpadata'));
     }
-
 }

@@ -30,7 +30,7 @@
             </div>
             <div class="search-box">
             <i class="material-icons">&#xE8B6;</i>
-            <input type="text" placeholder="Search&hellip;">
+            <input type="text" id="searchInput" placeholder="Search&hellip;">
         </div>
         </div>
        
@@ -127,6 +127,34 @@ function filterTable() {
 }
 
 
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("searchInput").addEventListener("input", function() { 
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll("#tsaTable tbody tr");
+            
+            rows.forEach(row => {
+                const cells = row.querySelectorAll("td");
+                let match = false;
+
+                cells.forEach(cell => {
+                    if (cell.textContent.toLowerCase().includes(searchValue)) {
+                        match = true;
+                    }
+                });
+
+                row.style.display = match ? "" : "none";
+            });
+        });
+
+        @if (Session::has("message"))
+            swal("Error logging in", "{{ Session::get('message') }}", "error");
+        @elseif(Session::has('success'))
+            swal("Success", "{{ Session::get('success') }}", "success");
+        @endif
+    });
 </script>
 
 

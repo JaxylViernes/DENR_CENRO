@@ -7,6 +7,11 @@
 <body>
 <div class="table-container">
     <div class="table-title">
+<<<<<<< HEAD
+        <h2>SURVEY AUTHORITY (SA)</h2><br>
+        
+        <div class="search-box">
+=======
         <div class="title-left">
         <h2>SURVEY AUTHORITY</h2>
         <button class="addApplicant" onclick="openForm()">ADD APPLICANT</button>
@@ -31,13 +36,20 @@
             </select>
             </div>
             <div class="search-box">
+>>>>>>> 7ce7c29d426a7ac63529c781ad49d3c610c6fdfc
             <i class="material-icons">&#xE8B6;</i>
-            <input type="text" placeholder="Search&hellip;">
+            <input type="text" id="searchInput" placeholder="Search&hellip;">
         </div>
+<<<<<<< HEAD
+
+    </div>
+    <table id = "saTable">
+=======
         </div>
        
     </div>
     <table class = "table" id ="tables">
+>>>>>>> 7ce7c29d426a7ac63529c781ad49d3c610c6fdfc
         <thead>
             <tr>
                 <th>#</th>
@@ -71,8 +83,49 @@
            @endforeach
         </tbody>
     </table>
+<<<<<<< HEAD
+    <div class="clearfix">
+        <div class="hint-text">Showing <b>#</b> out of <b>#</b> entries</div>
+        <div class="pagination">
+            <a href="#"><i class="material-icons">&#xE5CB;</i></a>
+            <a href="#">1</a>
+            <a href="#" class="active">2</a>
+            <a href="#">3</a>
+            <a href="#"><i class="material-icons">&#xE5CC;</i></a>
+        </div>
+    </div>
+</div>
+ <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                document.getElementById("searchInput").addEventListener("input", function() { 
+                    const searchValue = this.value.toLowerCase();
+                    const rows = document.querySelectorAll("#saTable tbody tr");
+                    
+                    rows.forEach(row => {
+                        const cells = row.querySelectorAll("td");
+                        let match = false;
+        
+                        cells.forEach(cell => {
+                            if (cell.textContent.toLowerCase().includes(searchValue)) {
+                                match = true;
+                            }
+                        });
+        
+                        row.style.display = match ? "" : "none";
+                    });
+                });
+        
+                @if (Session::has("message"))
+                    swal("Error logging in", "{{ Session::get('message') }}", "error");
+                @elseif(Session::has('success'))
+                    swal("Success", "{{ Session::get('success') }}", "success");
+                @endif
+            });
+        </script>
+=======
    
     <script>
+>>>>>>> 7ce7c29d426a7ac63529c781ad49d3c610c6fdfc
 
 document.querySelector("#filter").addEventListener("change", filterTable);
 

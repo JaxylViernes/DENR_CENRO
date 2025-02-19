@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Fpa extends Model
+class sp extends Model
 {
-    protected $table = 'fpa';
+    protected $table = 'sp';
     
     protected $fillable = [
-        'id_fpa',
+        'id_sp',
         'applicant_name',
         'applicant_number',
         'referred_investigator',
@@ -18,4 +18,5 @@ class Fpa extends Model
         'survey_no',
         'remarks',        
     ];
+    //
 }

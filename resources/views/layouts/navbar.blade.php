@@ -40,7 +40,7 @@
                     </li>
                     <p>Special Patent</p>
                     <div class="sp-content">
-                            <a href="">Government</a>
+                            <a href="/sp">Government</a>
                             <a href="">School</a>
                         </div>
                     </div>

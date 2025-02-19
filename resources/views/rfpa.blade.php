@@ -10,10 +10,10 @@
         <h2>RESIDENTIAL FREE PATENT APPLICATION (RFPA)</h2>
         <div class="search-box">
             <i class="material-icons">&#xE8B6;</i>
-            <input type="text" placeholder="Search&hellip;">
+            <input type="text" id="searchInput" placeholder="Search&hellip;">
         </div>
     </div>
-    <table>
+    <table id = "rfpaTable">
         <thead>
             <tr>
                 <th>#</th>
@@ -60,6 +60,51 @@
     </div>
 </div>
 
+<script>
 
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("searchInput").addEventListener("input", function () {
+        const searchValue = this.value.toLowerCase();
+        const rows = document.querySelectorAll("#rfpaTable tbody tr");
+
+        rows.forEach(row => {
+            const cells = row.querySelectorAll("td");
+            let match = false;
+            cells.forEach(cell => {
+                if (cell.textContent.toLowerCase().includes(searchValue)) {
+                    match = true;
+                }
+            });
+            row.style.display = match ? "" : "none";
+        });
+    });
+    document.querySelectorAll(".delete-confirm").forEach(button => {
+        button.addEventListener("click", function (e) {
+            e.preventDefault();
+            let deleteUrl = this.getAttribute("data-url");
+
+            swal({
+                title: "Are you sure?",
+                text: "Record will be moved to archives",
+                icon: "warning",
+                buttons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = deleteUrl;
+                }
+            });
+        });
+    });
+});
+
+@if(Session::has('message'))
+swal("Error logging in", "{{ Session::get('message') }}", "error");
+@elseif(Session::has('success'))
+swal("Application Added", "{{ Session::get('success') }}", "success");
+@endif
+
+</script>
+    
+</body>
 
 @endsection

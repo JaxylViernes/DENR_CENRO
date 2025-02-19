@@ -1,7 +1,6 @@
 @extends('layouts.navbar')
 @section('content')
 
-
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <body>
@@ -11,11 +10,11 @@
         
         <div class="search-box">
             <i class="material-icons">&#xE8B6;</i>
-            <input type="text" placeholder="Search&hellip;">
+            <input type="text" id="searchInput" placeholder="Search&hellip;">
         </div>
     </div>
     <button class="addApplicant" onclick="openForm()">ADD APPLICANT</button>
-    <table>
+    <table id="msaTable">
         <thead>
             <tr>
                 <th>#</th>
@@ -44,8 +43,6 @@
                 <a href="{{ route('deletemsa') }}" class="delete-confirm" data-url="{{ route('deletemsa') }}">
     <i class="material-icons">&#xE872;</i>
 </a>
-
-                <!-- <button class="delete" onclick="deleteConfirmation()"><i class="material-icons">&#xE872;</i></button> -->
                 </div>
                     </td>
             </tr>
@@ -63,7 +60,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="form-popup" id="myForm">
   <form action="{{ route('addmsa') }}" class="form-container" method="POST">
@@ -96,39 +92,32 @@
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
   </form>
 </div>
+
 <script>
 function openForm() {
   document.getElementById("myForm").style.display = "block";
 }
 
-function deleteConfirmation(){
-    swal({
-  title: "Are you sure?",
-  text: "But you will still be able to retrieve this file.",
-  type: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#DD6B55",
-  confirmButtonText: "Yes, archive it!",
-  cancelButtonText: "No, cancel please!",
-  closeOnConfirm: false,
-  closeOnCancel: false
-},
-function(isConfirm){
-  if (isConfirm) {
-    swal("Deleted!", "Your imaginary file has been archived.", "success");
-  } else {
-    swal("Cancelled", "Your imaginary file is safe :)", "error");
-  }
-});
-}
-
 function closeForm() {
   document.getElementById("myForm").style.display = "none";
 }
-</script>
 
-<script>
 document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("searchInput").addEventListener("input", function () {
+        const searchValue = this.value.toLowerCase();
+        const rows = document.querySelectorAll("#msaTable tbody tr");
+
+        rows.forEach(row => {
+            const cells = row.querySelectorAll("td");
+            let match = false;
+            cells.forEach(cell => {
+                if (cell.textContent.toLowerCase().includes(searchValue)) {
+                    match = true;
+                }
+            });
+            row.style.display = match ? "" : "none";
+        });
+    });
     document.querySelectorAll(".delete-confirm").forEach(button => {
         button.addEventListener("click", function (e) {
             e.preventDefault();
@@ -136,9 +125,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             swal({
                 title: "Are you sure?",
-                text: "Record will be moved to archves",
+                text: "Record will be moved to archives",
                 icon: "warning",
-               buttons: true
+                buttons: true
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = deleteUrl;
@@ -147,27 +136,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
-</script>
-
 
 @if(Session::has('message'))
-<script>
-    swal("Error logging in", "{{ Session::get('message') }}", "error",
-    {
-    
-    });
-</script>
-
+swal("Error logging in", "{{ Session::get('message') }}", "error");
 @elseif(Session::has('success'))
-<script>
-    swal("Application Added", "{{ Session::get('success') }}", "success",
-    {
-    
-    });
+swal("Application Added", "{{ Session::get('success') }}", "success");
+@endif
 </script>
-            @endif
 
-     
 </body>
 
 @endsection
